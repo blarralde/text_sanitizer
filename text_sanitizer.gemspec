@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = TextSanitizer::VERSION
   s.authors     = ["Benjamin Larralde"]
   s.email       = ["benjamin.larralde@gmail.com"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/saipas/text_sanitizer"
   s.summary     = "Cleans text fields in ActiveRecord."
   s.description = "Defines multiple helpers that operate various textual operations " <<
                   "like downcase, capitalize or sanitize (strip dangerous content) " <<
