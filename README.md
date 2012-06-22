@@ -1,4 +1,4 @@
-= TextSanitizer
+# TextSanitizer
 
 I found myself repeating the same text formatting methods over multiple models
 and realized this wasn't dry, so I made a plugin.
@@ -9,7 +9,7 @@ This plugin is useful if you:
 * like to have consistently formatted data in your DB
 * are going to display the text fields as is (or with .html_safe) in your app and want to make it safer (this uses the [Sanitize](https://github.com/rgrove/sanitize) gem by Ryan Grove)
 
-== How to use
+## How to use
 
 Install as a gem with:
 
@@ -30,11 +30,11 @@ end
 
 This will convert:
 
-* body: `<script>body!</script>` into `body!`
-* email: `EMAIL@TEST.COM` into `email@test.com`
-* name: `john SMITH` into `John Smith`
+* sanitize_text: `<script>body!</script>` into `body!`
+* downcase_text: `EMAIL@TEST.COM` into `email@test.com`
+* capitalize_text: `john SMITH` into `John Smith`
 
-== Custom sanitizers
+## Custom sanitizers
 
 You can also add your own sanitizers. To do so, use the following syntax in your model:
 
@@ -67,7 +67,7 @@ before_save :upcase_text
 
 def upcase_text
   [:name, :title].each do |text_field|
-    self.send "#{text_field}=", read_attribute(text_field).upcase
+    self.send "#{text_field}#", read_attribute(text_field).upcase
   end
 end
 ```
