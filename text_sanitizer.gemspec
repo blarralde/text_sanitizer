@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
                   "from string/text attributes in ActiveRecord models at validation " <<
                   "(or any other callback)."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", ">= 3.0.0"
