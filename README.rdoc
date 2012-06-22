@@ -1,0 +1,81 @@
+####################
+#
+#  HOW TO USE
+#
+#  in an initializer
+#
+#  -----------------
+#  require '/lib/text_sanitizer.rb'
+#  -----------------
+#
+#  in a model
+#
+#  -----------------
+#  sanitize_text :body
+#  downcase_text :email
+#  capitalize_text :name
+#  -----------------
+#
+####################
+#
+#  HOW TO ADD CUSTOM SANITIZERS
+#
+#  in a model
+#
+#  -----------------
+#  register_sanitizer :upcase, :before_save
+#  upcase_text :body
+#
+#  def upcase text
+#    text.upcase
+#  end
+#  -----------------
+#
+#  is equivalent to
+#
+#  -----------------
+#  before_save :upcase_text
+#
+#  def upcase_text
+#    self.body = self.body.upcase
+#  end
+#  -----------------
+#
+#  but with two or more attributes
+#
+#  -----------------
+#  register_sanitizer :upcase, :before_save
+#  upcase_text :body, :title
+#
+#  def upcase text
+#    text.upcase
+#  end
+#  -----------------
+#
+#  equivalent to
+#
+#  -----------------
+#  before_save :upcase_text
+#
+#  def upcase_text
+#    [:body, :title].each do |text_field|
+#      self.send "#{text_field}=", read_attribute(text_field).upcase
+#    end
+#  end
+#  -----------------
+#
+#  more
+#
+#  -----------------
+#  register_sanitizer :upcase, :before_validation, :body, :title
+#  -----------------
+#
+#  is equivalent to
+#
+#  -----------------
+#  register_sanitizer :upcase, :before_save
+#  upcase_text :body, :title
+#  -----------------
+#
+#
+####################
