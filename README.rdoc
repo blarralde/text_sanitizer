@@ -11,9 +11,9 @@ This plugin is useful if you:
 
 == How to use
 
-In an initializer, add:
+Install as a gem with:
 
-    require '/lib/text_sanitizer.rb'
+    gem 'text_sanitizer', :git => 'https://github.com/blarralde/text_sanitizer.git'
 
 In the model where you want to format data:
 
