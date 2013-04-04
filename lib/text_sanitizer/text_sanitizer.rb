@@ -20,6 +20,7 @@ module TextSanitizer
         attr_name = "text_fields_to_#{op}"
         self.send hook, "#{op}_text_fields"  # defines the hook
         self.send :mattr_accessor, attr_name  # defines the accessor
+        return unless self.table_exists?  # exits if the table hasn't been defined, useful for new installs
         attributes = args.map do |attr|  # checks that the attributes exist
           raise "Can't #{op} attribute #{attr}: doesn't exist." unless
             attr.to_s.in? self.column_names
@@ -58,8 +59,8 @@ module TextSanitizer
     def sanitize html
       Sanitize.clean(
         html,
-        :elements => %w(b div p i a span img u br),
-        :attributes => {'a' => %w(href title)},
+        :elements => %w(b div p i a span img u br h2 h3 h4 h5 ul li em),
+        :attributes => {'a' => %w(href title), 'img' => %w(src alt)},
         :protocols => {'a' => {'href' => %w(http https mailto relative)},
                        'img' => {'src'  => %w(http https relative)} },
         :add_attributes => {'a' => {'rel' => 'nofollow'} }
