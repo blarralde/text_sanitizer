@@ -60,10 +60,10 @@ module TextSanitizer
       Sanitize.clean(
         html,
         :elements => %w(b div p i a span img u br h2 h3 h4 h5 ul li em),
-        :attributes => {'a' => %w(href title), 'img' => %w(src alt)},
+        :attributes => {'a' => %w(href title target), 'img' => %w(src alt)},
         :protocols => {'a' => {'href' => %w(http https mailto relative)},
                        'img' => {'src'  => %w(http https relative)} },
-        :add_attributes => {'a' => {'rel' => 'nofollow'} }
+        :add_attributes => {'a' => {'rel' => 'nofollow', 'target' => '_blank'} }
       )
     end
 end
