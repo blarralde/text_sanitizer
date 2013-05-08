@@ -52,6 +52,11 @@ module TextSanitizer
       text.gsub(/\b\w+\b/){$&.capitalize}
     end
 
+    def convert_newlines_to_html_for text
+      paragraphs = text.split(/\r\n/)
+      paragraphs.map { |p| p.present? ? "<p>#{p}</p>" : "<br>" }.join('')
+    end
+
     def downcase text
       text.downcase
     end
@@ -71,6 +76,7 @@ end
 ActiveRecord::Base.class_eval do
   include TextSanitizer
   register_sanitizer :capitalize
+  register_sanitizer :convert_newlines_to_html_for
   register_sanitizer :downcase
   register_sanitizer :sanitize
 end
