@@ -1,3 +1,5 @@
+## OLD BAD CODE, PLEASE DON'T USE
+
 # TextSanitizer
 
 I found myself repeating the same text formatting methods over multiple models
